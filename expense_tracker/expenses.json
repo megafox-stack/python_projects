@@ -1,0 +1,14 @@
+[
+    {
+        "amount": 60.0,
+        "category": "food",
+        "desc": "f",
+        "date": "12-5-2024"
+    },
+    {
+        "amount": 100.0,
+        "category": "food",
+        "desc": "fof",
+        "date": "12-4-2024"
+    }
+]

@@ -1,0 +1,32 @@
+{
+    "1001": {
+        "account_no": 1001,
+        "name": "archit",
+        "balance": 1370,
+        "transactions": [
+            {
+                "type": "deposit",
+                "amount": 1500
+            },
+            {
+                "type": "TRANSFER OUT",
+                "amount": 130,
+                "to": 1002
+            }
+        ],
+        "pin": "1234"
+    },
+    "1002": {
+        "account_no": 1002,
+        "name": "choso",
+        "balance": 130,
+        "transactions": [
+            {
+                "type": "TRANSFER IN",
+                "amount": 130,
+                "from": 1001
+            }
+        ],
+        "pin": "1224"
+    }
+}
