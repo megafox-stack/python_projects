@@ -1,4 +1,4 @@
-from bank_project_python.bank_operations.saveandload import save_accounts
+from .saveandload import save_accounts
 def withdraw_money(accounts, account):
     try:
         withdraw = int(input("how much to withdraw:$"))

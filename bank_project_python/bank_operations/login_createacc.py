@@ -1,4 +1,4 @@
-from bank_project_python.bank_operations.saveandload import save_accounts
+from .saveandload import save_accounts
 def create_account(accounts, next_account_number):
     name = input("enter ur name:").strip('"')
     if not name:

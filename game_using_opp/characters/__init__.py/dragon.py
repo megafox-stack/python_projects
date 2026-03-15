@@ -1,6 +1,6 @@
-from charectars.enemy import enemy
+from characters.enemy import Enemy
 
-class dragon(enemy):
+class Dragon(Enemy):
     def __init__(self):
         super().__init__("Dragon", 200, 25)
 

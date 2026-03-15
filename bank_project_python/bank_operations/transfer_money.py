@@ -1,5 +1,5 @@
-from bank_project_python.bank_operations.saveandload import save_accounts
-from bank_project_python.bank_operations.confirmpin import confirm_pin
+from .saveandload import save_accounts
+from .confirmpin import confirm_pin
 
 def transfer_money(accounts,from_accounts,to_account,amount):
     

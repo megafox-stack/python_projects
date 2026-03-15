@@ -1,11 +1,11 @@
 
-from bank_project_python.bank_operations.saveandload import save_accounts,load_account
-from bank_project_python.bank_operations.login_createacc import create_account,login
-from bank_project_python.bank_operations.add_money import add_money
-from bank_project_python.bank_operations.withdraw_money import withdraw_money
-from bank_project_python.bank_operations.balance import balance_account
-from bank_project_python.bank_operations.history import show_history
-from bank_project_python.bank_operations.transfer_money import transfer_menu
+from bank_operations.saveandload import save_accounts,load_account
+from bank_operations.login_createacc import create_account,login
+from bank_operations.add_money import add_money
+from bank_operations.withdraw_money import withdraw_money
+from bank_operations.balance import balance_account
+from bank_operations.history import show_history
+from bank_operations.transfer_money import transfer_menu
 
 next_account_number = 1001
 if __name__ == "__main__":
@@ -55,7 +55,7 @@ if __name__ == "__main__":
                     break
         else:
               print("exiting the bank....")
-              
+              save_accounts(accounts)
               break          
                     
                     
