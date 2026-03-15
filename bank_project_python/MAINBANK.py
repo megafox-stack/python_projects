@@ -25,7 +25,7 @@ if __name__ == "__main__":
         choice = int(input("Enter choice: "))
 
         if choice == 1:
-            create_account(accounts)
+            next_account_number = create_account(accounts, next_account_number)
 
         elif choice == 2:
             account_number = login(accounts)
@@ -43,9 +43,9 @@ if __name__ == "__main__":
                 if option == 1:
                     balance_account(account)
                 elif option == 2:
-                    add_money(account)
+                    add_money(accounts, account)
                 elif option == 3:
-                    withdraw_money(account)
+                    withdraw_money(accounts, account)
                 elif option == 4:
                     show_history(account)
                 elif option == 5:
@@ -55,6 +55,7 @@ if __name__ == "__main__":
                     break
         else:
               print("exiting the bank....")
+              
               break          
                     
                     
