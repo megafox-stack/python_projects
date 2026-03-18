@@ -1,89 +1,20 @@
-import json
-monthly_budget = None
-def add_expenses(expenses):
-    
-    amount = float(input("Amount:$ "))
-    category = input("Category: ")
-    desc = input("Description: ")
-    date = input("Date (YYYY-MM-DD): ")
 
-    expense = {
-        "amount": amount,
-        "category": category,
-        "desc": desc,
-        "date": date
-    }
+import sys
+import os
 
-    expenses.append(expense)     
-    save_expenses(expenses)
-    check_budget_warning(expenses,monthly_budget)     
-    print("Expense added!")  
+# Add current directory to path for imports
+current_dir = os.path.dirname(os.path.abspath(__file__))
+if current_dir not in sys.path:
+    sys.path.insert(0, current_dir)
 
-def view_expenses(expenses):
-    if not expenses:
-        print("no expenses recorded")
-        return
-    print("\n-----All Expenses-----")
-    for i,e in enumerate(expenses,start=1):
-        print(f"{i}. ₹{e['amount']} | {e['category']} | {e['desc']} | {e['date']}")
-
-def category_summary(expenses):
-    summary = {}
-    for e in expenses:
-        cat = e["category"]
-        summary[cat] = summary.get(cat,0) + e["amount"]
-    print("\n----category summary----")
-    for cat,amt in summary.items():
-        print(f"{cat}:₹{amt}")
-
-def save_expenses(expenses,filename ="expenses.json"):
-    try:
-        with open(filename,"w") as f:
-            json.dump(expenses,f,indent=4)
-        print("expenses saved successfully!")
-    except Exception as e:
-        print("Error saving expenses:",e)
-
-def load_expenses(filename ="expenses.json"):
-    try:
-        with open(filename,"r") as f:
-            return json.load(f)
-    except FileNotFoundError:
-        return []
-    except Exception as e:
-        print("Error loading expenses:",e)
-        return []
-
-def set_budget():
-    try:
-        budget = float(input("enter the budget:$"))
-        if budget < 0:
-            print("buget cannot be zero")
-            return None
-        print(f"monthly budget set to {budget}")
-        return budget
-    except ValueError:
-        print("invalid number!")
-        return None
-
-def calculate_total(expenses):
-    total = 0
-    for e in expenses:
-        total+=e["amount"]
-    return total
-        
-def check_budget_warning(expenses,budget):
-    if budget is None:
-        return
-    total_spent = calculate_total(expenses) 
-    percent = (total_spent/budget *100)
-    print(f"total spent:{total_spent}/{budget}")
-
-    if percent >= 100:
-        print("budget exceeded!")
-    elif percent >=80:
-        print(f"u have used {budget}% of budget")               
-             
+# Import all modules
+from expenses_operations.add_expenses import add_expenses
+from expenses_operations.view_expenses import view_expenses
+from expenses_operations.save_loadexpenses import save_expenses, load_expenses
+from expenses_operations.total_expenses import calculate_total
+from expenses_operations.category_summary import category_summary
+from expenses_operations.set_budget import set_budget, check_budget_warning
+monthly_budget = None            
 if __name__ == "__main__":
     expenses = load_expenses()
 
@@ -109,5 +40,6 @@ if __name__ == "__main__":
         elif choice == "5":
             monthly_budget = set_budget()          
         else:
+            save_expenses(expenses)
             print("Goodbye!")
             break
