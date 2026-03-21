@@ -1,4 +1,5 @@
 import os
+from utils.helpers import is_supported_file 
 
 extensions = ['.py', '.js', '.java', '.cpp', '.c']
 
@@ -7,11 +8,9 @@ def scan_files(path):
 
     for root, dirs, files in os.walk(path):
         for file in files:
-            for ext in extensions:
-                if file.endswith(ext):
-                    full_path = os.path.join(root, file)
-                    code_files.append(full_path)
-                    break
+            if is_supported_file(file, extensions):
+                full_path = os.path.join(root, file)
+                code_files.append(full_path)
 
     return code_files
 
