@@ -1,44 +1,54 @@
-from charectars.hero import Hero
-from bosses.fire_mega_dragon import fire_mega_dragon
-from bosses.shadow_beast import shadow_beast
-from bosses.orc_warlord import orc_warlord
-from portions.healthportion import healthportion
-from weapons.sword import sword
-from weapons.bow import bow
-from enemies.dragon import dragon
-from enemies.goblin import goblin
-from enemies.hoglin import hoglin
-from enemies.skeleton import skeleton   
-from enemies.orc import orc
 
-def battle(player,enemy):
-    while player.isalive() and enemy.isalive():
-        print("1. Attack")
+from rpg_game.characters.hero import Hero
+
+from bosses.orc_warlord import OrcWarlord
+from bosses.shadow_beast import ShadowBeast
+
+from portions.healthportion import HealthPotion
+
+from weapons.sword import Sword
+from weapons.bow import Bow
+
+from enemies.dragon import Dragon
+from enemies.goblin import Goblin
+from enemies.hoglin import Hoglin
+from enemies.skeleton import Skeleton
+from enemies.orc import Orc
+
+def battle(player, enemy):
+
+    while player.is_alive() and enemy.is_alive():
+        print("\n1. Attack")
         print("2. Heal")
 
         choice = input("Choose an action: ")
 
         if choice == "1":
             player.attack(enemy)
+
         elif choice == "2":
-            portion = healthportion()
-            portion.use(player)        
-        
-        if enemy.isalive():
+            potion = HealthPotion()
+            potion.use(player)
+
+        if enemy.is_alive():
             enemy.attack(player)
-            
-        if player.isalive():
-            print(f"{player.name} wins!")
-        else:
-            print("Game Over!")
+
+        player.show_status()
+        enemy.show_status()
+
+   
+    if player.is_alive():
+        print(f"\n🔥 {player.name} wins!")
+    else:
+        print("\n💀 Game Over!")
 
 
 hero = Hero(name = "rob")
-hero.equip_weapon(sword())
+hero.equip_weapon(Sword())
 
-enemy = goblin()
+enemy = Goblin()
 battle(hero,enemy)
 
 print("BOSS FIGHT!!!!!")
-boss = shadow_beast()
+boss = ShadowBeast()
 battle(hero,boss)
